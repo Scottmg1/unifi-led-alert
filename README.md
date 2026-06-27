@@ -16,9 +16,18 @@ If multiple events occur simultaneously, the LED reflects the highest priority s
 
 ## Prerequisites
 
-1. An always-on Linux server (e.g., Ubuntu) that shares a UPS with the PoE switch feeding your APs.
-2. Network UPS Tools (`nut`) configured on your server to monitor your UPS.
-3. SSH access enabled on your UniFi Network Controller (Settings -> System -> Advanced -> Device Authentication).
-4. `sshpass` installed on your server:
+1. **Python 3.6+** 
+2. An always-on Linux server (e.g., Ubuntu) that shares a UPS with the PoE switch feeding your APs.
+3. Network UPS Tools (`nut`) configured on your server to monitor your UPS.
+4. SSH access enabled on your UniFi Network Controller (UniFi Devices -> Device Updates & Settings -> Device SSH Settings -> Device SSH Authentication).
+5. `sshpass` installed on your server:
    ```bash
    sudo apt update && sudo apt install sshpass
+
+## Demo Mode Testing
+The script includes a built-in demo mode designed to cycle through every single alert pattern on your APs. This is the best way to verify credentials and check network connectivity.
+
+Running the Demo
+Run the script with the --demo flag. You must run it with sudo (or as the file owner) so that the script has permission to read the protected password file /etc/unifi-led/pass:
+   ```bash
+sudo python3 led_alert.py --demo
